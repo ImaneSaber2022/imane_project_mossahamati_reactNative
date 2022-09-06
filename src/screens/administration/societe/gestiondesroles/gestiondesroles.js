@@ -250,7 +250,7 @@ const Gestiondesroles = () => {
             </DataTable.Title>
             <DataTable.Title style={{marginLeft: 40}}>ACTION</DataTable.Title>
           </DataTable.Header>
-
+    
           <DataTable.Row>
             <DataTable.Cell>
               {' '}
