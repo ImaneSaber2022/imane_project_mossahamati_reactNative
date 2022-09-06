@@ -30,52 +30,59 @@ import Ajoutercollaboration from '../screens/administration/societe/gestionutili
 import Ajouterprofil from '../screens/administration/societe/gestiondesroles/ajouterprofil';
 import Updatecollaboration from '../screens/administration/societe/gestionutilisateur/updatecollaborateur';
 import UpdateProfil from '../screens/administration/societe/gestiondesroles/updateprofil';
-
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import DrawerCustom from '../components/drawercustom';
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 const Navigation = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Administration" component={Administration} />
-      <Stack.Screen name="Page" component={Page} />
-      <Stack.Screen
-        name="Updatecollaboration"
-        component={Updatecollaboration}
-      />
-      <Stack.Screen name="Gestiondesroles" component={Gestiondesroles} />
-      <Stack.Screen name="Ajouterprofil" component={Ajouterprofil} />
-      <Stack.Screen name="UpdateProfil" component={UpdateProfil} />
-      <Stack.Screen name="Gestionutilisateur" component={Gestionutilisateur} />
-      <Stack.Screen
-        name="Ajoutercollaboration"
-        component={Ajoutercollaboration}
-      />
-      <Stack.Screen name="Toutessocietes" component={Toutessocietes} />
-      <Stack.Screen name="Identite" component={Identite} />
-      <Stack.Screen name="Password" component={Password} />
-      <Stack.Screen name="Notification" component={Notification} />
-      <Stack.Screen name="SplachScreen" component={SplachScreen} />
-      <Stack.Screen name="Iscrire" component={Iscrire} />
-      <Stack.Screen name="CodeActivation" component={CodeActivation} />
-      <Stack.Screen name="Bienvenue" component={Bienvenue} />
-      <Stack.Screen name="PasswordOublie" component={PasswordOublie} />
-      <Stack.Screen name="Updatepassword" component={Updatepassword} />
-      <Stack.Screen name="Modal" component={Modal} />
-      <Stack.Screen
+    <Drawer.Navigator
+      useLegacyImplementation drawerContent={props => <DrawerCustom{...props} />}
+      screenOptions={{headerShown: false}}>
+      <Drawer.Screen name="Page" component={Page} />
+      <Drawer.Screen name="SplachScreen" component={SplachScreen} />
+
+      <Drawer.Screen
         name="PiéreChargeCarteNational"
         component={PiéreChargeCarteNational}
       />
-      <Stack.Screen name="Societes" component={Societes} />
-      <Stack.Screen
+
+      <Drawer.Screen name="Administration" component={Administration} />
+      <Drawer.Screen 
+        name="Updatecollaboration"
+        component={Updatecollaboration}
+      />
+      <Drawer.Screen  name="Gestiondesroles" component={Gestiondesroles} />
+      <Drawer.Screen  name="Ajouterprofil" component={Ajouterprofil} />
+      <Drawer.Screen  name="UpdateProfil" component={UpdateProfil} />
+      <Drawer.Screen  name="Gestionutilisateur" component={Gestionutilisateur} />
+     
+      <Drawer.Screen 
+        name="Ajoutercollaboration"
+        component={Ajoutercollaboration}
+      />
+      <Drawer.Screen name="Toutessocietes" component={Toutessocietes} />
+      <Drawer.Screen name="Identite" component={Identite} />
+      <Drawer.Screen name="Password" component={Password} />
+      <Drawer.Screen name="Notification" component={Notification} />
+      <Drawer.Screen name="Iscrire" component={Iscrire} />
+      <Drawer.Screen name="CodeActivation" component={CodeActivation} />
+      <Drawer.Screen name="Bienvenue" component={Bienvenue} />
+      <Drawer.Screen name="PasswordOublie" component={PasswordOublie} />
+      <Drawer.Screen name="Updatepassword" component={Updatepassword} />
+      <Drawer.Screen name="Modal" component={Modal} />
+      <Drawer.Screen name="Societes" component={Societes} />
+      <Drawer.Screen
         name="ConditionUtilisation"
         component={ConditionUtilisation}
       />
-      <Stack.Screen name="TraitementCompris" component={TraitementCompris} />
-      <Stack.Screen name="Societe" component={Societe} />
-      <Stack.Screen name="JournalEvenement" component={JournalEvenement} />
-      <Stack.Screen name="MonCompte" component={MonCompte} />
-      <Stack.Screen name="ConneterPasword" component={ConneterPasword} />
-      <Stack.Screen name="ContactezNous" component={ContactezNous} />
-    </Stack.Navigator>
+      <Drawer.Screen name="TraitementCompris" component={TraitementCompris} />
+      <Drawer.Screen name="Societe" component={Societe} />
+      <Drawer.Screen name="JournalEvenement" component={JournalEvenement} />
+      <Drawer.Screen name="MonCompte" component={MonCompte} />
+      <Drawer.Screen name="ConneterPasword" component={ConneterPasword} />
+      <Drawer.Screen name="ContactezNous" component={ContactezNous} />
+    </Drawer.Navigator>
   );
 };
 

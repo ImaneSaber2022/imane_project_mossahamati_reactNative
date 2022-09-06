@@ -19,6 +19,15 @@ import {useForm, Controller} from 'react-hook-form';
 import deconnecter from '../../../../assests/images/deconnecter.png';
 import mosahamatilogo from '../../../../assests/images/mosahamatilogo.png';
 import userdark from '../../../../assests/images/userdark.png';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from 'react-native-chart-kit';
 const MonCompte = () => {
   const Navigation = useNavigation();
   const {
@@ -43,82 +52,158 @@ const MonCompte = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            marginTop: 50,
-          }}>
-          <View>
-            <Text
+        <View style={{backgroundColor: '#FFFFFF'}}>
+          <View style={{backgroundColor: '#ffa726', height: 150}}>
+            <View
               style={{
-                marginTop: 5,
-                fontSize: 20,
-                color: '#A2A2A5',
-                cursor: 'pointer',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginTop: 10,
+                marginRight: 50,
               }}>
-              Laravel
-            </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginLeft: 25,
+                }}>
+                <Text
+                  style={{
+                    marginTop: 5,
+                    fontSize: 20,
+                    color: '#A2A2A5',
+                  }}>
+                  Laravel
+                </Text>
+
+                <View
+                  style={[
+                    styles.action,
+                    {width: '50%', height: 40, borderRadius: 12},
+                  ]}>
+                  <FontAwesome5
+                    name={'search'}
+                    size={25}
+                    color="white"
+                    style={{marginTop: 6, marginLeft: 5}}
+                  />
+                  <TextInput
+                    placeholder=" Search..."
+                    style={[styles.TextInput, {backgroundColor: '#ffa726'}]}
+                  />
+                </View>
+              </View>
+            </View>
+            <View style={{right: 100, top: 10}}>
+              <LineChart
+                data={{
+                  labels: [],
+                  datasets: [
+                    {
+                      data: [2, 5, 2, 5, 2, 5, 2, 5],
+                    },
+                  ],
+                }}
+                width={900} // from react-native
+                height={140}
+                withHorizontalLabels={false}
+                withDots={false}
+                withInnerLines={false}
+                chartConfig={{
+                  backgroundColor: '#ffa726',
+                  backgroundGradientFrom: '#ffa726',
+                  backgroundGradientTo: '#ffa726',
+                  decimalPlaces: 2, // optional, defaults to 2dp
+                  color: (opacity = 1) => `rgba(245, 30, 13, ${opacity})`,
+                  labelColor: (opacity = 1) =>
+                    `rgba(255, 255, 255, ${opacity})`,
+                  style: {
+                    borderRadius: 0,
+                  },
+                }}
+                bezier
+                style={{
+                  marginVertical: 8,
+                  borderRadius: 16,
+                }}
+              />
+            </View>
           </View>
-          <SearchBar
-            value={value}
-            updateSearch={updateSearch}
-            style={{color: '#A2A2A5'}}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            marginTop: 60,
-          }}>
-          <View style={[styles.button_annulers, {backgroundColor: '#FFFFFF'}]}>
-            <TouchableOpacity onPress={handleSubmit(handleidentite)}>
-              <Image source={user} style={styles.imge} resizeMode="contain" />
-              <Text style={[styles.signin_annul, {color: '#000000'}]}>
-                Identité
-              </Text>
-            </TouchableOpacity>
+          <View style={{position: 'relative', top: -40}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginTop: 60,
+              }}>
+              <View
+                style={[styles.button_annulers, {backgroundColor: '#FFFFFF'}]}>
+                <TouchableOpacity onPress={handleSubmit(handleidentite)}>
+                  <Image
+                    source={user}
+                    style={styles.imge}
+                    resizeMode="contain"
+                  />
+                  <Text style={[styles.signin_annul, {color: '#000000'}]}>
+                    Identité
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View
+                style={[
+                  styles.button_annulers,
+                  {backgroundColor: '#FFFFFF', marginRight: 10},
+                ]}>
+                <TouchableOpacity onPress={handleSubmit(handlepassword)}>
+                  <Image
+                    source={clee}
+                    style={styles.imge}
+                    resizeMode="contain"
+                  />
+                  <Text style={[styles.signin_annul, {color: '#000000'}]}>
+                    Mot de passe
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginTop: 25,
+              }}>
+              <View
+                style={[styles.button_annulers, {backgroundColor: '#FFFFFF'}]}>
+                <TouchableOpacity onPress={handleSubmit(handleNotifier)}>
+                  <Image
+                    source={badge}
+                    style={styles.imge}
+                    resizeMode="contain"
+                  />
+                  <Text style={[styles.signin_annul, {color: '#000000'}]}>
+                    Notification
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View
+                style={[
+                  styles.button_annulers,
+                  {backgroundColor: '#F39200', marginRight: 10},
+                ]}>
+                <TouchableOpacity onPress={handleSubmit(contactez)}>
+                  <Image
+                    source={files}
+                    style={styles.imge}
+                    resizeMode="contain"
+                  />
+                  <Text style={[styles.signin_annul, {color: '#fff'}]}>
+                    Contactez-nous
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
-          <View
-            style={[
-              styles.button_annulers,
-              {backgroundColor: '#FFFFFF', marginRight: 10},
-            ]}>
-            <TouchableOpacity onPress={handleSubmit(handlepassword)}>
-              <Image source={clee} style={styles.imge} resizeMode="contain" />
-              <Text style={[styles.signin_annul, {color: '#000000'}]}>
-                Mot de passe
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            marginTop: 25,
-          }}>
-          <View style={[styles.button_annulers, {backgroundColor: '#FFFFFF'}]}>
-            <TouchableOpacity onPress={handleSubmit(handleNotifier)}>
-              <Image source={badge} style={styles.imge} resizeMode="contain" />
-              <Text style={[styles.signin_annul, {color: '#000000'}]}>
-                Notification
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={[
-              styles.button_annulers,
-              {backgroundColor: '#F39200', marginRight: 10},
-            ]}>
-            <TouchableOpacity onPress={handleSubmit(contactez)}>
-              <Image source={files} style={styles.imge} resizeMode="contain" />
-              <Text style={[styles.signin_annul, {color: '#fff'}]}>
-                Contactez-nous
-              </Text>
-            </TouchableOpacity>
-          </View>
+          {/*  */}
         </View>
       </View>
     </ScrollView>
@@ -130,9 +215,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    height: 600,
   },
   imge: {
-    width: 140,
+    width: 115,
     height: 40,
     right: 7,
   },
@@ -145,13 +231,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   action: {
-    width: '50%',
+    flexDirection: 'row',
     borderColor: '#e8e8e8',
     borderWidth: 1,
-    borderRadius: 7,
-    backgroundColor: '#f7f7f7',
-    marginLeft: 50,
-    height: '100%',
+    borderRadius: 5,
+    backgroundColor: 'transparent',
   },
   actionlegale: {
     width: '45%',

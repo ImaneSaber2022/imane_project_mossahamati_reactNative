@@ -14,13 +14,22 @@ import telechargerblak from '../../../../assests/images/telechargerblak.png';
 import radius from '../../../../assests/images/radius.png';
 import radiusorange from '../../../../assests/images/radiusorange.png';
 import radiuswarning from '../../../../assests/images/radiuswarning.png';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from 'react-native-chart-kit';
 const JournalEvenement = () => {
   const [value, setValue] = useState();
   const updateSearch = value => {};
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <View style={{backgroundColor: '#F39200'}}>
+        <View style={{backgroundColor: '#ffa726', height: 220}}>
           <View
             style={{
               flexDirection: 'row',
@@ -51,12 +60,47 @@ const JournalEvenement = () => {
                 styles.action,
                 {width: '30%', height: 40, marginLeft: 10},
               ]}>
+                 <FontAwesome5 name={'search'} size={25} color="white"style={{marginTop:6,marginLeft:5}} />
               <TextInput placeholder=" Search..." style={styles.TextInput} />
+             
             </View>
             <Image
               source={telecharger}
               style={{width: '20%', height: 40, right: 5}}
               resizeMode="contain"
+            />
+          </View>
+          <View style={{right: 120, bottom: 50}}>
+            <LineChart
+              data={{
+                labels: [],
+                datasets: [
+                  {
+                    data: [4, 6, 4, 6, 4, 6, 4, 6, 4, 6],
+                  },
+                ],
+              }}
+              width={900} // from react-native
+              height={140}
+              withHorizontalLabels={false}
+              withDots={false}
+              withInnerLines={false}
+              chartConfig={{
+                backgroundColor: '#ffa726',
+                backgroundGradientFrom: '#ffa726',
+                backgroundGradientTo: '#ffa726',
+                decimalPlaces: 2, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(245, 30, 13, ${opacity})`,
+                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                  borderRadius: 0,
+                },
+              }}
+              bezier
+              style={{
+                marginVertical: 8,
+                borderRadius: 16,
+              }}
             />
           </View>
         </View>
@@ -99,7 +143,7 @@ const JournalEvenement = () => {
               style={{padding: 10, height: 40, marginLeft: 10, marginRight: 10}}
               resizeMode="contain"
             />
-             
+
             <View style={{flexDirection: 'column'}}>
               <Text
                 style={{
@@ -320,6 +364,7 @@ const JournalEvenement = () => {
             </View>
           </View>
         </View>
+        
       </View>
     </ScrollView>
   );
@@ -346,7 +391,7 @@ const styles = StyleSheet.create({
   },
   TextInput: {
     flex: 1,
-    marginLeft: 10,
+ 
   },
   action: {
     flexDirection: 'row',

@@ -72,7 +72,7 @@ const Societes = () => {
           <View style={styles.button_annulers}>
             <TouchableOpacity onPress={handleSubmit(handetoutessocietes)}>
               <Image source={toutes} style={styles.imge} resizeMode="contain" />
-              <Text style={styles.signin_annul}>Toutes les SOCIETES</Text>
+              <Text style={styles.signin_annul}>Toutes les Societes</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   imge: {
-    width: 120,
+    width: 90,
     height: 50,
-    right: 8,
+   
   },
   button_annulers: {
     textAlign: 'center',

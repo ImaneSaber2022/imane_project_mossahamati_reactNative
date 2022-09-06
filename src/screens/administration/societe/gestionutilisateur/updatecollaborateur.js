@@ -37,11 +37,17 @@ const Updatecollaboration = () => {
   const handlEnregistrer = () => {
     Navigation.navigate('Gestionutilisateur');
   };
+  const handlesociete = () => {
+    Navigation.navigate('Gestionutilisateur');
+  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <View style={{flexDirection: 'row'}}>
+        <TouchableOpacity onPress={handleSubmit(handlesociete)}>
+      <FontAwesome5 name={'angle-double-left'} size={20} color="gray" solid style={{marginTop:35,marginLeft:10}} />
+       </TouchableOpacity >
           <Image
             source={mosahamatilogo}
             style={styles.imgs}
@@ -50,7 +56,7 @@ const Updatecollaboration = () => {
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Image
               source={userdark}
-              style={{marginTop: 30}}
+              style={{marginTop: 30,marginLeft:120}}
               resizeMode="contain"
             />
             <TouchableOpacity onPress={handleSubmit(chargementdocuments)}>
@@ -219,7 +225,7 @@ const Updatecollaboration = () => {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginTop: 15,
+              marginTop: 23,
               marginLeft:102
             
             }}>
@@ -337,6 +343,7 @@ const styles = StyleSheet.create({
   imgs: {
     width: '30%',
     height: 90,
+    left:20
   },
 });
 

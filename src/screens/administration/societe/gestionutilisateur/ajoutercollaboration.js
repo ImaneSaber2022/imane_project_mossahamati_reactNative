@@ -1,69 +1,77 @@
 import {
-    View,
-    Text,
-    Button,
-    Modal,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-    TextInput,
-    ScrollView
-  } from 'react-native';
-  import React, {useState} from 'react';
-  import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-  import {useNavigation} from '@react-navigation/native';
-  import {useForm, Controller} from 'react-hook-form';
-import notificationimg from '../../../../../assests/images/notificationimg.png'
-  import deconnecter from '../../../../../assests/images/deconnecter.png';
-  import mosahamatilogo from '../../../../../assests/images/mosahamatilogo.png';
-  import userdark from '../../../../../assests/images/userdark.png';
-  import photo1 from '../../../../../assests/images/photo1.png';
-  import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-  import Select from '@redmin_delishaj/react-native-select';
-  const Tab = createMaterialTopTabNavigator();
-  const Ajoutercollaboration = () => {
-    const Navigation = useNavigation();
-    const {
-      control,
-      handleSubmit,
-      formState: {errors},
-    } = useForm();
-    const handlSuivant = () => {
-      Navigation.navigate('CodeActivation');
-    };
-    const chargementdocuments = () => {
-      Navigation.navigate('ConneterPasword');
-    };
-    const handlEnregistrer = () => {
-      Navigation.navigate('Gestionutilisateur');
-    };
-  
-    return (
-      <ScrollView showsVerticalScrollIndicator={false}>
+  View,
+  Text,
+  Button,
+  Modal,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+} from 'react-native';
+import React, {useState} from 'react';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {useNavigation} from '@react-navigation/native';
+import {useForm, Controller} from 'react-hook-form';
+import notificationimg from '../../../../../assests/images/notificationimg.png';
+import deconnecter from '../../../../../assests/images/deconnecter.png';
+import mosahamatilogo from '../../../../../assests/images/mosahamatilogo.png';
+import userdark from '../../../../../assests/images/userdark.png';
+import photo1 from '../../../../../assests/images/photo1.png';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import Select from '@redmin_delishaj/react-native-select';
+const Tab = createMaterialTopTabNavigator();
+const Ajoutercollaboration = () => {
+  const Navigation = useNavigation();
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+  const handlSuivant = () => {
+    Navigation.navigate('CodeActivation');
+  };
+  const chargementdocuments = () => {
+    Navigation.navigate('ConneterPasword');
+  };
+  const handlEnregistrer = () => {
+    Navigation.navigate('Gestionutilisateur');
+  };
+  const handlesociete = () => {
+    Navigation.navigate('Gestionutilisateur');
+  };
+  return (
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+          <TouchableOpacity onPress={handleSubmit(handlesociete)}>
+            <FontAwesome5
+              name={'angle-double-left'}
+              size={20}
+              color="gray"
+              solid
+              style={{marginTop: 35, marginLeft: 10}}
+            />
+          </TouchableOpacity>
           <Image
             source={mosahamatilogo}
             style={styles.imgs}
             resizeMode="contain"
           />
-          <View
-           
-            style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-           
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Image
               source={userdark}
-              style={{marginTop: 30}}
+              style={{marginTop: 30,marginLeft:100}}
               resizeMode="contain"
             />
-           
-            <TouchableOpacity  onPress={handleSubmit(chargementdocuments)}>
-            <Image
-              source={deconnecter}
-              style={{height: 90, marginRight: 15}}
-              resizeMode="contain"
-            />
-             </TouchableOpacity>
+
+            <TouchableOpacity onPress={handleSubmit(chargementdocuments)}>
+              <Image
+                source={deconnecter}
+                style={{height: 90, marginRight: 15}}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.header}>
@@ -106,7 +114,7 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
                 photo
               </Text>
             </View>
-            <View >
+            <View>
               <View
                 style={{
                   backgroundColor: '#EBEDF3',
@@ -115,12 +123,15 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
                   borderWidth: 1,
                   borderColor: '#fff',
                 }}>
-                <Image source={photo1} style={styles.img} resizeMode="contain" />
+                <Image
+                  source={photo1}
+                  style={styles.img}
+                  resizeMode="contain"
+                />
               </View>
             </View>
-           
           </View>
-  
+
           <View
             style={{
               flexDirection: 'row',
@@ -129,16 +140,15 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
             }}>
             <View>
               <Text
-                style={[styles.signin_annul, {marginLeft: 40, color: '#464E5F',marginTop:10}]}>
+                style={[
+                  styles.signin_annul,
+                  {marginLeft: 40, color: '#464E5F', marginTop: 10},
+                ]}>
                 Matricule
               </Text>
-              
             </View>
             <View style={styles.action}>
-              <TextInput
-                placeholder="26453285"
-                style={{width:200}}
-              />
+              <TextInput placeholder="26453285" style={{width: 200}} />
             </View>
           </View>
           <View
@@ -149,16 +159,15 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
             }}>
             <View>
               <Text
-                style={[styles.signin_annul, {marginLeft: 60, color: '#464E5F',marginTop:10}]}>
+                style={[
+                  styles.signin_annul,
+                  {marginLeft: 60, color: '#464E5F', marginTop: 10},
+                ]}>
                 Nom
               </Text>
-             
             </View>
             <View style={styles.action}>
-              <TextInput
-                placeholder=" Nom"
-                style={{width:200}}
-              />
+              <TextInput placeholder=" Nom" style={{width: 200}} />
             </View>
           </View>
           <View
@@ -169,16 +178,15 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
             }}>
             <View>
               <Text
-                style={[styles.signin_annul, {marginLeft: 40, color: '#464E5F',marginTop:10}]}>
+                style={[
+                  styles.signin_annul,
+                  {marginLeft: 40, color: '#464E5F', marginTop: 10},
+                ]}>
                 Prénom
               </Text>
-             
             </View>
             <View style={styles.action}>
-              <TextInput
-                placeholder="Prénom"
-                style={{width:200}}
-              />
+              <TextInput placeholder="Prénom" style={{width: 200}} />
             </View>
           </View>
           <View
@@ -189,16 +197,15 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
             }}>
             <View>
               <Text
-                style={[styles.signin_annul, {marginLeft: 55, color: '#464E5F',marginTop:10}]}>
+                style={[
+                  styles.signin_annul,
+                  {marginLeft: 55, color: '#464E5F', marginTop: 10},
+                ]}>
                 Login
               </Text>
-              
             </View>
             <View style={styles.action}>
-              <TextInput
-                placeholder="Login"
-                style={{width:200}}
-              />
+              <TextInput placeholder="Login" style={{width: 200}} />
             </View>
           </View>
           <View
@@ -209,25 +216,23 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
             }}>
             <View style={{}}>
               <Text
-                style={[styles.signin_annul, { color: '#464E5F',marginTop:15}]}>
-               Mot de passe
+                style={[
+                  styles.signin_annul,
+                  {color: '#464E5F', marginTop: 15},
+                ]}>
+                Mot de passe
               </Text>
-             
             </View>
             <View style={styles.action}>
-              <TextInput
-                placeholder="Mot de passe"
-                style={{width:200}}
-              />
+              <TextInput placeholder="Mot de passe" style={{width: 200}} />
             </View>
           </View>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginTop: 15,
-              marginLeft:102
-            
+              marginTop: 25,
+              marginLeft: 102,
             }}>
             <View style={{marginTop: 8}}>
               <Text>Societe</Text>
@@ -241,8 +246,7 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
               flexDirection: 'row',
               justifyContent: 'space-between',
               marginTop: 30,
-              marginLeft:102
-            
+              marginLeft: 102,
             }}>
             <View style={{marginTop: 8}}>
               <Text>Profil</Text>
@@ -251,15 +255,23 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
               <Select placeholder="Profil"></Select>
             </View>
           </View>
-          
+
           {/* button enregistrer */}
-          <View style={{flexDirection: 'row',justifyContent:'space-around',marginBottom:10}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              marginBottom: 10,
+            }}>
             <View>
-            <TouchableOpacity
-              onPress={handleSubmit(handlEnregistrer)}
-              style={[styles.button_annulers,{marginLeft:35,marginTop:30}]}>
-              <Text style={styles.signin_annuls}>Anuuler</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleSubmit(handlEnregistrer)}
+                style={[
+                  styles.button_annulers,
+                  {marginLeft: 35, marginTop: 30},
+                ]}>
+                <Text style={styles.signin_annuls}>Anuuler</Text>
+              </TouchableOpacity>
             </View>
             <TouchableOpacity
               onPress={handleSubmit(handlEnregistrer)}
@@ -269,77 +281,75 @@ import notificationimg from '../../../../../assests/images/notificationimg.png'
           </View>
         </View>
       </View>
-      </ScrollView>
-    );
-  };
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#000000',
-    },
-    TextInput: {
-      flex: 1,
-      paddingRight: 25,
-    },
-    img: {
-      width: 100,
-      height: 100,
-     
-    },
-    action: {
-      borderColor: '#e8e8e8',
-      borderWidth: 1,
-      borderRadius: 5,
-      backgroundColor: '#f7f7f7',
-    },
-    button_annuler: {
-      alignItems: 'center',
-      marginTop: 30,
-      width: ' 40%',
-      height: 50,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 6,
-      borderColor: '#e8e8e8',
-      borderWidth: 1,
-      backgroundColor: '#131313',
-    },
-   
-  
-    signin_annul: {
-      fontSize: 16,
-      
-      color: '#464E5F',
-    },
-    imge: {
-      width: 65,
-      height: 60,
-      right: 7,
-    },
-    header: {
-      flex: 2,
-      backgroundColor: '#FAFAFA',
-    },
-    button_annulers: {
-      borderRadius: 7,
-      borderColor: '#e8e8e8',
-      borderWidth: 1,
-      width: '90%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height:45,
-      padding: 12,
-    },
-    signin_annuls: {
-      fontSize: 15,
-      fontWeight: 'bold',
-      color: '#464E5F',
-    },
-    imgs: {
-      width: '30%',
-      height: 90,
-    },
-  });
-  
-  export default Ajoutercollaboration;
-  
+    </ScrollView>
+  );
+};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  TextInput: {
+    flex: 1,
+    paddingRight: 25,
+  },
+  img: {
+    width: 100,
+    height: 100,
+  },
+  action: {
+    borderColor: '#e8e8e8',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: '#f7f7f7',
+  },
+  button_annuler: {
+    alignItems: 'center',
+    marginTop: 30,
+    width: ' 40%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 6,
+    borderColor: '#e8e8e8',
+    borderWidth: 1,
+    backgroundColor: '#131313',
+  },
+
+  signin_annul: {
+    fontSize: 16,
+
+    color: '#464E5F',
+  },
+  imge: {
+    width: 65,
+    height: 60,
+    right: 7,
+  },
+  header: {
+    flex: 2,
+    backgroundColor: '#FAFAFA',
+  },
+  button_annulers: {
+    borderRadius: 7,
+    borderColor: '#e8e8e8',
+    borderWidth: 1,
+    width: '90%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 45,
+    padding: 12,
+  },
+  signin_annuls: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#464E5F',
+  },
+  imgs: {
+    width: '30%',
+    height: 90,
+    left:10
+  },
+});
+
+export default Ajoutercollaboration;

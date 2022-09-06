@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import img from '../../../assests/images/imag.png';
 import imge from '../../../assests/images/camera.png';
@@ -57,29 +58,37 @@ const PiéreChargeCarteNational = ({onPress}) => {
             }}>
             <Text> Cliquez pour charger votre document</Text>
           </Text>
-          <Text style={{marginTop: 10}}>
-            <View
-              style={[
-                styles.button_annulers,
-                {paddingBottom: 20, paddingTop: 20},
-              ]}>
-              <Image source={imge} style={styles.imge} resizeMode="contain" />
-              <Text style={styles.signin_annul}>Prendre une photo</Text>
+          <TouchableOpacity>
+            <View style={{marginTop: 10}}>
+              <View
+                style={[
+                  styles.button_annulers,
+                  {paddingBottom: 20, paddingTop: 20},
+                ]}>
+                <Image source={imge} style={styles.imge} resizeMode="contain" />
+                <Text style={styles.signin_annul}>Prendre une photo</Text>
+              </View>
             </View>
-          </Text>
-
-          <Text style={{marginTop: 10}}>
-            <View
-              style={[
-                styles.button_annulers,
-                {paddingBottom: 20, paddingTop: 20},
-              ]}>
-              <Image source={data} style={styles.imge} resizeMode="contain" />
-              <Text style={styles.signin_annul}>Prendre une photo</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View>
+              <View style={{marginTop: 10}}>
+                <View
+                  style={[
+                    styles.button_annulers,
+                    {paddingBottom: 20, paddingTop: 20},
+                  ]}>
+                  <Image
+                    source={data}
+                    style={styles.imge}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.signin_annul}>Prendre une photo</Text>
+                </View>
+              </View>
             </View>
-          </Text>
+          </TouchableOpacity>
         </View>
-
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <View style={styles.button_creer}>
             <Text style={styles.signin} onPress={handleSubmit(confirmer)}>
@@ -105,7 +114,7 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f7f7f7',
+    backgroundColor: '#E9E9E9',
   },
 
   borderhache: {
@@ -125,15 +134,14 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderColor: '#e8e8e8',
     borderWidth: 1,
-    width: '20%',
+    width: '100%',
     backgroundColor: '#FAF8FA',
-    paddingLeft: 70,
-    paddingRight: 70,
   },
   signin_annul: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#272427',
+    textAlign: 'center',
   },
 
   button_creer: {
@@ -151,7 +159,7 @@ const styles = StyleSheet.create({
   button_annuler: {
     alignItems: 'center',
     marginTop: 30,
-    width: ' 45%',
+    width: ' 50%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -159,6 +167,7 @@ const styles = StyleSheet.create({
     borderColor: '#e8e8e8',
     borderWidth: 1,
     backgroundColor: '#f7f7f7',
+    marginLeft: 5,
   },
   signin: {
     fontSize: 16,
@@ -206,6 +215,6 @@ const styles = StyleSheet.create({
   imge: {
     width: 25,
     height: 25,
-    left: 50,
+    marginLeft: 75,
   },
 });

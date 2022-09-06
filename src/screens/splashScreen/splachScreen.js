@@ -25,7 +25,35 @@ import {useForm, Controller} from 'react-hook-form';
 import touch0 from '../../../assests/images/touch0.png';
 import CheckBox from '@react-native-community/checkbox';
 import Select from '@redmin_delishaj/react-native-select';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const SplachScreen = ({onPress}) => {
+  const [name, setName] = useState('imane');
+  const [supported, setSupported] = useState(null);
+  useEffect(() => {
+    TouchID.isSupported()
+      .then(sucesso => {
+        setSupported(true);
+      })
+      .catch(error => {
+        console.log('ERRO TOUCH' + error);
+       // alert('Touch ID nao suporado/habilitado');
+      });
+  }, []);
+  const handllogin = () => {
+    const configs = {
+      title: 'Authticao Touch ID',
+      color: '#FF0000',
+      sensorErrorDescription: 'Touch ID invalide',
+    };
+    TouchID.authenticate('Login ', configs)
+      .then(success => {
+        console.log('bien :)');
+        setName('Sujeito Programador');
+      })
+      .catch(error => {
+        console.log('errrrror', +error);
+      });
+  };
   const {height} = useWindowDimensions();
   const Navigation = useNavigation();
   const {
@@ -63,15 +91,12 @@ const SplachScreen = ({onPress}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {/* <Select options={options} /> */}
-
         <Image source={logo1} style={styles.img} resizeMode="contain" />
       </View>
       <View style={styles.footer}>
         <Text style={[styles.title, {fontFamily: 'MMA Champ'}]}>
           Bienvenue à Mossahamati
         </Text>
-
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <Text
             style={[
@@ -116,7 +141,6 @@ const SplachScreen = ({onPress}) => {
           onPress={handleSubmit(confirmpassword)}>
           Mot de passe oublié?
         </Text>
-        {/* <Text style={{color:'#000000', paddingTop:10}}>Se souvenir de moi</Text> */}
         <View style={{flexDirection: 'row', marginTop: 10}}>
           <CheckBox
             disabled={false}
@@ -125,7 +149,6 @@ const SplachScreen = ({onPress}) => {
           />
           <Text style={{marginTop: 5}}>Se souvenir de moi</Text>
         </View>
-
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <TouchableOpacity onPress={handleSubmit(SignUpPress)}>
             <View style={styles.button}>
@@ -133,7 +156,9 @@ const SplachScreen = ({onPress}) => {
             </View>
           </TouchableOpacity>
           <View style={styles.button_creer}>
-            <Image source={touch0} style={styles.touch} resizeMode="contain" />
+            <TouchableHighlight onPress={handllogin}>
+              <FontAwesome5 name={'fingerprint'} size={40} color="white" />
+            </TouchableHighlight>
           </View>
         </View>
         <Text style={styles.inscrit}>
@@ -156,6 +181,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000000',
+  },
+  btn: {
+    borderRadius: 20,
+    backgroundColor: '#0391D7',
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -227,7 +256,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     marginTop: 15,
-    width: ' 330%',
+    width: ' 260%',
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
@@ -283,7 +312,7 @@ const styles = StyleSheet.create({
   button_creer: {
     alignItems: 'center',
     marginTop: 15,
-    width: ' 15%',
+    width: ' 20%',
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',

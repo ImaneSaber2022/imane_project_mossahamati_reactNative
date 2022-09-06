@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity,TextInput} from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
@@ -12,7 +12,15 @@ import {DataTable} from 'react-native-paper';
 import aidecomptable from '../../../../../assests/images/aidecomptable.png';
 import imgupdate from '../../../../../assests/images/imgupdate.png';
 import imgdelete from '../../../../../assests/images/imgdelete.png';
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from 'react-native-chart-kit';
 const Gestiondesroles = () => {
   const Navigation = useNavigation();
   const {
@@ -31,14 +39,20 @@ const Gestiondesroles = () => {
   };
   const [value, setValue] = useState();
   const updateSearch = value => {};
+  const handlesociete = () => {
+    Navigation.navigate('Administration');
+  };
   return (
     <View style={styles.container}>
       <View
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-between',
+          
           backgroundColor: '#000000',
         }}>
+           <TouchableOpacity onPress={handleSubmit(handlesociete)}>
+      <FontAwesome5 name={'angle-double-left'} size={20} color="gray" solid style={{marginTop:35,marginLeft:10}} />
+       </TouchableOpacity >
         <Image
           source={mosahamatilogo}
           style={styles.imgs}
@@ -47,7 +61,7 @@ const Gestiondesroles = () => {
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <Image
             source={userdark}
-            style={{marginTop: 29}}
+            style={{marginTop: 29,marginLeft:120}}
             resizeMode="contain"
           />
           <TouchableOpacity onPress={handleSubmit(chargementdocuments)}>
@@ -60,38 +74,91 @@ const Gestiondesroles = () => {
         </View>
       </View>
       <View style={styles.header}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            marginTop: 50,
-          }}>
-          <View>
-            <Text style={{marginTop: 5, fontSize: 20, color: '#A2A2A5'}}>
-              Laravel
-            </Text>
+      <View style={{backgroundColor: '#ffa726', height: 190}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              marginTop: 50,
+            
+            }}>
+            <View>
+              <Text
+                style={{
+                  marginTop: 5,
+                  fontSize: 20,
+                  color: '#A2A2A5',
+                  marginRight: 100,
+                }}>
+                Laravel
+              </Text>
+            </View>
+            <View
+                  style={[
+                    styles.action,
+                    {width: '40%', height: 40, borderRadius: 12},
+                  ]}>
+                  <FontAwesome5
+                    name={'search'}
+                    size={25}
+                    color="white"
+                    style={{marginTop: 6, marginLeft: 5}}
+                  />
+                  <TextInput
+                    placeholder=" Search..."
+                    style={styles.TextInput}
+                  />
+                </View>
           </View>
-          <SearchBar
-            value={value}
-            updateSearch={updateSearch}
-            style={{color: '#A2A2A5'}}
-          />
+          <View style={{right: 100, top: 10}}>
+            <LineChart
+              data={{
+                labels: [],
+                datasets: [
+                  {
+                    data: [2, 5, 2, 5, 2, 5, 2, 5,2,5,2,5],
+                  },
+                ],
+              }}
+              width={1020} // from react-native
+              height={100}
+              withHorizontalLabels={false}
+              withDots={false}
+              withInnerLines={false}
+              chartConfig={{
+                backgroundColor: '#ffa726',
+                backgroundGradientFrom: '#ffa726',
+                backgroundGradientTo: '#ffa726',
+                decimalPlaces: 2, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(245, 30, 13, ${opacity})`,
+                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                  borderRadius: 0,
+                },
+              }}
+              bezier
+              style={{
+                marginVertical: 8,
+                borderRadius: 16,
+              }}
+            />
+          </View>
         </View>
         <View
           style={[
             styles.button_annulers,
-            {backgroundColor: '#FFFFFF', marginLeft: 140, width: '35%'},
+            {backgroundColor: '#FFFFFF', marginLeft: 120, width: '35%'},
           ]}>
           <TouchableOpacity onPress={handleSubmit(ajouterprofil)}>
             <Image
               source={gestionroles}
               resizeMode="contain"
-              style={{marginLeft: 15}}
+              style={{marginLeft: '10%'}}
             />
             <Text
               style={[
                 styles.signin_annul,
-                {maxWidth: '70%', textAlign: 'center', marginLeft: 15},
+                {maxWidth: '100%', textAlign: 'center'},
               ]}>
               Gestion des roles
             </Text>
@@ -137,9 +204,17 @@ const Gestiondesroles = () => {
           <View>
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity onPress={handleSubmit(updateprofil)}>
-                <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+                <Image
+                  source={imgupdate}
+                  resizeMode="contain"
+                  style={{marginTop: 10}}
+                />
               </TouchableOpacity>
-              <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+              <Image
+                source={imgupdate}
+                resizeMode="contain"
+                style={{marginTop: 10}}
+              />
             </View>
           </View>
         </View>
@@ -169,9 +244,17 @@ const Gestiondesroles = () => {
           <View>
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity onPress={handleSubmit(updateprofil)}>
-              <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+                <Image
+                  source={imgupdate}
+                  resizeMode="contain"
+                  style={{marginTop: 10}}
+                />
               </TouchableOpacity>
-              <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+              <Image
+                source={imgupdate}
+                resizeMode="contain"
+                style={{marginTop: 10}}
+              />
             </View>
           </View>
         </View>
@@ -201,9 +284,17 @@ const Gestiondesroles = () => {
           <View>
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity onPress={handleSubmit(updateprofil)}>
-              <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+                <Image
+                  source={imgupdate}
+                  resizeMode="contain"
+                  style={{marginTop: 10}}
+                />
               </TouchableOpacity>
-              <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+              <Image
+                source={imgupdate}
+                resizeMode="contain"
+                style={{marginTop: 10}}
+              />
             </View>
           </View>
         </View>
@@ -233,116 +324,23 @@ const Gestiondesroles = () => {
           <View>
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity onPress={handleSubmit(updateprofil)}>
-              <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+                <Image
+                  source={imgupdate}
+                  resizeMode="contain"
+                  style={{marginTop: 10}}
+                />
               </TouchableOpacity>
-              <Image source={imgupdate} resizeMode="contain" style={{marginTop:10}} />
+              <Image
+                source={imgupdate}
+                resizeMode="contain"
+                style={{marginTop: 10}}
+              />
             </View>
           </View>
         </View>
-
       </View>
 
-      {/* <View style={{marginBottom: 60}}>
-        <DataTable>
-          <DataTable.Header>
-            <DataTable.Title style={{marginLeft: 40}}>
-              INTITULE / DESCRIPTION
-            </DataTable.Title>
-            <DataTable.Title style={{marginLeft: 40}}>ACTION</DataTable.Title>
-          </DataTable.Header>
-    
-          <DataTable.Row>
-            <DataTable.Cell>
-              {' '}
-              <View style={{flexDirection: 'row'}}>
-                <Image source={aidecomptable} resizeMode="contain" />
-                <View style={{flexDirection: 'column'}}>
-                  <Text>Aide copmtable</Text>
-                  <Text>Saisie de ecriture</Text>
-                </View>
-              </View>
-            </DataTable.Cell>
-            <DataTable.Cell>
-              <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity onPress={handleSubmit(updateprofil)}>
-                  <Image
-                    source={imgupdate}
-                    resizeMode="contain"
-                    style={{marginLeft: 40}}
-                  />
-                </TouchableOpacity>
-                <Image source={imgupdate} resizeMode="contain" />
-              </View>
-            </DataTable.Cell>
-          </DataTable.Row>
-          <DataTable.Row>
-            <DataTable.Cell>
-              {' '}
-              <View style={{flexDirection: 'row'}}>
-                <Image source={aidecomptable} resizeMode="contain" />
-                <View style={{flexDirection: 'column'}}>
-                  <Text>Agent de traitement </Text>
-                  <Text>Saisie RH</Text>
-                </View>
-              </View>
-            </DataTable.Cell>
-            <DataTable.Cell>
-              <View style={{flexDirection: 'row'}}>
-                <Image
-                  source={imgupdate}
-                  resizeMode="contain"
-                  style={{marginLeft: 40}}
-                />
-                <Image source={imgupdate} resizeMode="contain" />
-              </View>
-            </DataTable.Cell>
-          </DataTable.Row>
-          <DataTable.Row>
-            <DataTable.Cell>
-              {' '}
-              <View style={{flexDirection: 'row'}}>
-                <Image source={aidecomptable} resizeMode="contain" />
-                <View style={{flexDirection: 'column'}}>
-                  <Text>Agent d'appel</Text>
-                  <Text>Saisie de ecriture</Text>
-                </View>
-              </View>
-            </DataTable.Cell>
-            <DataTable.Cell>
-              <View style={{flexDirection: 'row'}}>
-                <Image
-                  source={imgupdate}
-                  resizeMode="contain"
-                  style={{marginLeft: 40}}
-                />
-                <Image source={imgupdate} resizeMode="contain" />
-              </View>
-            </DataTable.Cell>
-          </DataTable.Row>
-          <DataTable.Row>
-            <DataTable.Cell>
-              {' '}
-              <View style={{flexDirection: 'row'}}>
-                <Image source={aidecomptable} resizeMode="contain" />
-                <View style={{flexDirection: 'column'}}>
-                  <Text>Facilités</Text>
-                  <Text>Saisie RH</Text>
-                </View>
-              </View>
-            </DataTable.Cell>
-            <DataTable.Cell>
-              <View style={{flexDirection: 'row'}}>
-                <Image
-                  source={imgupdate}
-                  resizeMode="contain"
-                  style={{marginLeft: 40}}
-                />
-                <Image source={imgupdate} resizeMode="contain" />
-              </View>
-            </DataTable.Cell>
-          </DataTable.Row>
-        </DataTable>
-      </View> */}
+      
     </View>
   );
 };
@@ -369,6 +367,16 @@ const styles = StyleSheet.create({
   header: {
     flex: 2,
     backgroundColor: '#fff',
+  },
+  TextInput: {
+    flex: 1,
+  },
+  action: {
+    flexDirection: 'row',
+    borderColor: '#e8e8e8',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: 'transparent',
   },
   button_annulers: {
     borderRadius: 25,

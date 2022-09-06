@@ -38,11 +38,16 @@ const Ajouterprofil = () => {
   const handlEnregistrer = () => {
     Navigation.navigate('Gestiondesroles');
   };
-
+  const handlesociete = () => {
+    Navigation.navigate('Gestiondesroles');
+  };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <TouchableOpacity onPress={handleSubmit(handlesociete)}>
+      <FontAwesome5 name={'angle-double-left'} size={20} color="gray" solid style={{marginTop:35,marginLeft:10}} />
+       </TouchableOpacity >
           <Image
             source={mosahamatilogo}
             style={styles.imgs}
@@ -51,7 +56,7 @@ const Ajouterprofil = () => {
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Image
               source={userdark}
-              style={{marginTop: 30}}
+              style={{marginTop: 30,marginLeft:100}}
               resizeMode="contain"
             />
 
@@ -100,7 +105,7 @@ const Ajouterprofil = () => {
                   fontSize: 14,
                   color: '#A2A2A5',
                   marginRight: 10,
-                  marginLeft: 130,
+                  marginLeft: 90,
                 }}>
                 choix d'icone
               </Text>
@@ -231,7 +236,7 @@ const Ajouterprofil = () => {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
-              marginTop: 20,
+              marginTop: 20,marginRight:20
             }}>
             <View>
               <Text
@@ -251,7 +256,7 @@ const Ajouterprofil = () => {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
-              marginTop: 10,
+              marginTop: 10,marginRight:25
             }}>
             <View>
               <Text
@@ -291,13 +296,13 @@ const Ajouterprofil = () => {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
-              marginTop: 15,
+              marginTop: 20,
               marginLeft: 100,
             }}>
-            <View style={{marginTop: 8}}>
-              <Text>SOCIETE</Text>
+            <View style={{marginTop: 8,fontSize:15}}>
+              <Text style={{fontSize:16,alignItems:'center'}}>Societe</Text>
             </View>
-            <View style={{height: 35, width: '50%', justifyContent: 'center'}}>
+            <View style={{height: 45, width: '65%', justifyContent: 'center'}}>
               <Select placeholder="Societe"></Select>
             </View>
           </View>
@@ -308,6 +313,7 @@ const Ajouterprofil = () => {
               flexDirection: 'row',
               justifyContent: 'space-around',
               marginBottom: 25,
+              paddingBottom:50
             }}>
             <View>
               <TouchableOpacity
@@ -334,13 +340,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000000',
+    height:900
+   
   },
   TextInput: {
     flex: 1,
     paddingRight: 25,
   },
   img: {
-    width: 60,
+    width: 55,
     height: 55,
   },
   action: {
@@ -394,6 +402,7 @@ const styles = StyleSheet.create({
   imgs: {
     width: '30%',
     height: 90,
+    left:20
   },
 });
 

@@ -42,11 +42,16 @@ const UpdateProfil = () => {
   const handleUtilisateur = () => {
     Navigation.navigate('Gestionutilisateur');
   };
-
+  const handlesociete = () => {
+    Navigation.navigate('Gestiondesroles');
+  };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <TouchableOpacity onPress={handleSubmit(handlesociete)}>
+      <FontAwesome5 name={'angle-double-left'} size={20} color="gray" solid style={{marginTop:35,marginLeft:10}} />
+       </TouchableOpacity >
           <Image
             source={mosahamatilogo}
             style={styles.imgs}
@@ -104,7 +109,7 @@ const UpdateProfil = () => {
                   fontSize: 14,
                   color: '#A2A2A5',
                   marginRight: 10,
-                  marginLeft: 130,
+                  marginLeft: 100,
                 }}>
                 choix d'icone
               </Text>
@@ -273,28 +278,28 @@ const UpdateProfil = () => {
           <View
             style={{
               flexDirection: 'row',
-
+              justifyContent: 'space-around',
               marginTop: 10,
-              marginLeft: 45,
+              marginRight:15
             }}>
             <View>
               <Text
                 style={[
                   styles.signin_annul,
-                  {color: '#464E5F', marginTop: 10, maxWidth: '60%'},
+                  {color: '#464E5F', marginTop: 10, maxWidth: '65%',marginLeft:20},
                 ]}>
                 Utilisateur rattaché
               </Text>
             </View>
             <View style={styles.action}>
-              <TextInput placeholder=" 6" style={{width: 165}} />
+              <TextInput placeholder=" 6" style={{width: 170}} />
             </View>
             <TouchableOpacity onPress={handleSubmit(handleUtilisateur)}>
-            <Image
-              source={imgeyees}
-              style={{width: 25, height: 55, marginLeft: 10}}
-              resizeMode="contain"
-            />
+              <Image
+                source={imgeyees}
+                style={{width: 25, height: 55,marginLeft:15}}
+                resizeMode="contain"
+              />
             </TouchableOpacity>
           </View>
 
@@ -367,6 +372,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000000',
+    height:900
   },
   TextInput: {
     flex: 1,
@@ -375,7 +381,6 @@ const styles = StyleSheet.create({
   img: {
     width: 60,
     height: 55,
-   
   },
   action: {
     borderColor: '#e8e8e8',

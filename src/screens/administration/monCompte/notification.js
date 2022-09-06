@@ -31,10 +31,15 @@ const Notification = () => {
   const chargementdocuments = () => {
     Navigation.navigate('ConneterPasword');
   };
-
+  const handlesociete = () => {
+    Navigation.navigate('Administration');
+  };
   return (
     <View style={styles.container}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+      <View style={{flexDirection: 'row'}}>
+      <TouchableOpacity onPress={handleSubmit(handlesociete)}>
+      <FontAwesome5 name={'angle-double-left'} size={20} color="gray" solid style={{marginTop:35,marginLeft:10}} />
+       </TouchableOpacity >
         <Image
           source={mosahamatilogo}
           style={styles.imgs}
@@ -44,7 +49,7 @@ const Notification = () => {
           style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <Image
             source={userdark}
-            style={{marginTop: 29}}
+            style={{marginTop: 29,marginLeft:120}}
             resizeMode="contain"
           />
           <Image
@@ -183,6 +188,7 @@ const styles = StyleSheet.create({
   imgs: {
     width: '30%',
     height: 90,
+    left:20
   },
 });
 
